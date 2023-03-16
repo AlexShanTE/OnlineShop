@@ -8,7 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.alex.sid.shante.onlineshop.presentation.theme.OnlineShopTheme
-import com.alex.sid.shante.onlineshop.presentation.ui.authorization.Authorization
+import com.alex.sid.shante.onlineshop.presentation.ui.home.Home
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Authorization()
+                    Home()
                 }
             }
         }

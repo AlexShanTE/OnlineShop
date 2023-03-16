@@ -21,5 +21,14 @@
     <string name="user_not_found">User not found</string>
     <string name="sign_up_with_google">Sign with Google</string>
     <string name="sign_up_with_apple">Sign with Apple</string>
+    <!--Profile Screen-->
+    <string name="trade_store">Trade store</string>
+    <string name="balance">Balance</string>
+    <string name="trade_history">Trade history</string>
+    <string name="restore_purchase">Restore Purchase</string>
+    <string name="help">Help</string>
+    <string name="log_oup">Log out</string>
+    <string name="upload_item">Upload Item</string>
+    <string name="change_photo">Change photo</string>
 
 </resources>
