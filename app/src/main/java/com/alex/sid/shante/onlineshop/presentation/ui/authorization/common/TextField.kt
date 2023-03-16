@@ -23,24 +23,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.alex.sid.shante.onlineshop.R
 import com.alex.sid.shante.onlineshop.presentation.theme.Error
 import com.alex.sid.shante.onlineshop.presentation.theme.HintColor
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalComposeUiApi::class)
 @Composable
 fun CustomTextField(
+    modifier: Modifier = Modifier,
     value: String,
     placeHolderText: String,
     isValueVisible: Boolean = true,
     isError: Boolean = false,
     trailingIcon: @Composable() (() -> Unit)? = null,
     onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier
 ) {
 
     val interactionSource = remember { MutableInteractionSource() }
@@ -64,8 +66,9 @@ fun CustomTextField(
                     color = Color(0xFFE8E8E8),
                     shape = RoundedCornerShape(15.dp)
                 ),
+            singleLine = true,
             textStyle = MaterialTheme.typography.body1.copy(
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Start,
                 color = if (isError) Error else HintColor
             ),
             visualTransformation = if (isValueVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -76,31 +79,48 @@ fun CustomTextField(
                     keyboardController?.hide()
                 }
             ),
-        ) {
-            TextFieldDefaults.TextFieldDecorationBox(
-                value = value,
-                innerTextField = it,
-                singleLine = true,
-                enabled = true,
-                isError = isError,
-                visualTransformation = VisualTransformation.None,
-                trailingIcon = trailingIcon,
-                placeholder = {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        style = MaterialTheme.typography.body1.copy(
+            decorationBox = { innerTextField ->
+                TextFieldDefaults.TextFieldDecorationBox(
+                    value = value,
+                    innerTextField = innerTextField,
+                    singleLine = true,
+                    enabled = true,
+                    isError = isError,
+                    visualTransformation = VisualTransformation.None,
+                    trailingIcon = trailingIcon,
+                    placeholder = {
+                        val additionPadding = 35.dp
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(
+                                    start =
+                                    if (placeHolderText == stringResource(id = R.string.password))
+                                        additionPadding
+                                    else 0.dp
+                                ),
+                            style = MaterialTheme.typography.body1.copy(
+                                color = if (isError) Error else HintColor
+                            ),
+                            text = placeHolderText,
                             textAlign = TextAlign.Center,
-                            color = if (isError) Error else HintColor
-                        ),
-                        text = placeHolderText,
-                        color = if (isError) Error else HintColor
+//                            color = if (isError) Error else HintColor
+                        )
+                    },
+                    interactionSource = interactionSource,
+                    contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
+                        top = 2.dp, bottom = 2.dp
+                    ),
+                    colors = TextFieldDefaults.textFieldColors(
+                        textColor = Color.Black,
+                        disabledTextColor = Color.Transparent,
+                        backgroundColor = Color.White,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent
                     )
-                },
-                interactionSource = interactionSource,
-                contentPadding = TextFieldDefaults.textFieldWithoutLabelPadding(
-                    top = 2.dp, bottom = 2.dp
                 )
-            )
-        }
+            }
+        )
     }
 }

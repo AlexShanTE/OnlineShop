@@ -23,11 +23,24 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.alex.sid.shante.onlineshop.R
 import com.alex.sid.shante.onlineshop.presentation.ui.authorization.common.CustomTextField
 
 @Composable
-fun LoginInScreen() {
+fun LoginScreen(
+    navController: NavController,
+    userLogin: String?
+) {
+
+
+    println("USER LOGIN OUTSIDE $userLogin")
+
+    if (userLogin!== null) {
+        println("USER LOGIN IS $userLogin")
+        // todo navigate page1
+    }
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -48,9 +61,9 @@ fun LoginInScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 44.dp),
-            value = state.firstName,
-            onValueChange = { viewModel.onFirstNameChanged(it) },
-            isError = !state.isFirstNameValid,
+            value = state.login,
+            onValueChange = { viewModel.onLoginChanged(it) },
+            isError = !state.isLoginValid,
             placeHolderText = stringResource(R.string.first_name),
         )
         Spacer(modifier = Modifier.height(35.dp))
@@ -89,7 +102,12 @@ fun LoginInScreen() {
                 .height(46.dp)
                 .padding(horizontal = 44.dp),
             onClick = {
-                viewModel.isValidFields(context)
+                if (viewModel.isValidFields(context))
+                    viewModel.login(
+                        context,
+                        login = state.login,
+                        password = state.password
+                    )
             },
             shape = RoundedCornerShape(15.dp)
         ) {
@@ -101,5 +119,9 @@ fun LoginInScreen() {
 @Preview(showBackground = true)
 @Composable
 fun SignInScreenPreview() {
-    LoginInScreen()
+    val context = LocalContext.current
+    LoginScreen(
+        navController = NavController(context),
+        userLogin = null
+    )
 }

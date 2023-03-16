@@ -1,4 +1,4 @@
-package com.alex.sid.shante.onlineshop.presentation.ui.authorization.signinscreen
+package com.alex.sid.shante.onlineshop.presentation.ui.authorization.signupscreen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -10,11 +10,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -23,25 +26,32 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.alex.sid.shante.onlineshop.R
+import com.alex.sid.shante.onlineshop.domain.models.User
 import com.alex.sid.shante.onlineshop.presentation.theme.LogInColor
-import com.alex.sid.shante.onlineshop.presentation.ui.authorization.signinscreen.components.CustomButtonWithIcon
+import com.alex.sid.shante.onlineshop.presentation.ui.authorization.Screen
 import com.alex.sid.shante.onlineshop.presentation.ui.authorization.common.CustomTextField
+import com.alex.sid.shante.onlineshop.presentation.ui.authorization.signupscreen.components.CustomButtonWithIcon
+import kotlinx.coroutines.launch
 
 @Composable
-fun SignInScreen() {
+fun SignUpScreen(
+    navController: NavController
+) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
 
-        val viewModel: SignInViewModel = hiltViewModel()
+        val viewModel: SignUpViewModel = hiltViewModel()
         val state by viewModel.state.collectAsState()
         val context = LocalContext.current
+        val scope = rememberCoroutineScope()
 
         Spacer(modifier = Modifier.height(120.dp))
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.sign_in),
+            text = stringResource(R.string.sign_up),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.h4
         )
@@ -50,20 +60,39 @@ fun SignInScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 44.dp),
-            value = state.firstName,
-            isError = !state.isFirstNameValid,
-            placeHolderText = stringResource(R.string.first_name),
-            onValueChange = { viewModel.onFirstNameChanged(it) },
+            value = state.login,
+            isError = !state.isLoginValid,
+            placeHolderText = stringResource(R.string.login),
+            onValueChange = { viewModel.onLoginChanged(it) },
         )
         Spacer(modifier = Modifier.height(35.dp))
         CustomTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 44.dp),
-            value = state.lastName,
-            isError = !state.isLastNameValid,
-            placeHolderText = stringResource(R.string.last_name),
-            onValueChange = { viewModel.onLastNameChanged(it) },
+            value = state.password,
+            onValueChange = { viewModel.onPasswordChanged(it) },
+            isValueVisible = state.isPasswordShowed,
+            isError = !state.isPasswordValid,
+            trailingIcon = {
+                IconButton(
+                    onClick = { viewModel.changePasswordVisibility() }
+                ) {
+                    if (state.isPasswordShowed) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_eye),
+                            contentDescription = null
+                        )
+                    } else {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_eye_off),
+                            contentDescription = null
+                        )
+                    }
+
+                }
+            },
+            placeHolderText = stringResource(R.string.password),
         )
         Spacer(modifier = Modifier.height(35.dp))
         CustomTextField(
@@ -82,12 +111,25 @@ fun SignInScreen() {
                 .height(46.dp)
                 .padding(horizontal = 44.dp),
             onClick = {
-                //todo navigate
-                viewModel.isValidFields(context)
+                if (viewModel.isValidFields(context)) {
+                    scope.launch {
+                        val user = viewModel.registerNewUser(
+                            context = context,
+                            user = User(
+                                login = state.login,
+                                password = state.password,
+                                email = state.email
+                            )
+                        )
+                        if (user !== null) {
+                            navController.navigate(route = Screen.LoginScreen.withArgs(user.login))
+                        }
+                    }
+                }
             },
             shape = RoundedCornerShape(15.dp)
         ) {
-            Text(text = stringResource(R.string.sign_in))
+            Text(text = stringResource(R.string.sign_up))
         }
         Spacer(modifier = Modifier.height(15.dp))
         Row(
@@ -98,7 +140,7 @@ fun SignInScreen() {
                 modifier = Modifier
                     .padding(start = 2.dp)
                     .clickable {
-                        /*TODO*/
+                        navController.navigate(route = Screen.LoginScreen.route)
                     },
                 text = stringResource(R.string.log_in),
                 color = LogInColor
@@ -107,14 +149,20 @@ fun SignInScreen() {
         Spacer(modifier = Modifier.height(70.dp))
         CustomButtonWithIcon(
             painter = painterResource(id = R.drawable.ic_google),
-            text = "Sign with Google",
-            onButtonClick = { }
+            text = stringResource(R.string.sign_up_with_google),
+            onButtonClick = {
+                val message = context.resources.getString(R.string.sign_up_with_google)
+                viewModel.makeToast(context, message)
+            }
         )
-        Spacer(modifier = Modifier.height(38.dp))
+        Spacer(modifier = Modifier.height(34.dp))
         CustomButtonWithIcon(
             painter = painterResource(id = R.drawable.ic_apple),
-            text = "Sign with Apple",
-            onButtonClick = { }
+            text = stringResource(R.string.sign_up_with_apple),
+            onButtonClick = {
+                val message = context.resources.getString(R.string.sign_up_with_apple)
+                viewModel.makeToast(context, message)
+            }
         )
     }
 }
@@ -122,5 +170,6 @@ fun SignInScreen() {
 @Preview(showBackground = true)
 @Composable
 fun SignInScreenPreview() {
-    SignInScreen()
+    val context = LocalContext.current
+    SignUpScreen(navController = NavController(context))
 }

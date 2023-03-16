@@ -1,4 +1,4 @@
-package com.alex.sid.shante.onlineshop.presentation.ui.authorization.signinscreen.components
+package com.alex.sid.shante.onlineshop.presentation.ui.authorization.signupscreen.components
 
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource

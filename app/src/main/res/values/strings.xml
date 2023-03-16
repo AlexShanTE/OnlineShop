@@ -1,19 +1,25 @@
 <resources>
     <string name="app_name">OnlineShop</string>
-    <!--SingIn Screen-->
-    <string name="sign_in">Sign in</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <!--SingUp Screen-->
+    <string name="sign_up">Sign up</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="log_in">Log in</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
-    <string name="email">Email</string>
     <string name="invalid_last_name">Last name not valid</string>
     <string name="invalid_email">Email not valid</string>
     <!--LoginIn Screen-->
     <string name="welcome_back">Welcome back</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="email">Email</string>
     <string name="invalid_first_name">First name not valid</string>
     <string name="invalid_password">Password not valid</string>
+    <string name="invalid_login">Login not valid</string>
+    <string name="user_already_exist">User with that login already exist</string>
+    <string name="user_not_found">User not found</string>
+    <string name="sign_up_with_google">Sign with Google</string>
+    <string name="sign_up_with_apple">Sign with Apple</string>
 
 </resources>
