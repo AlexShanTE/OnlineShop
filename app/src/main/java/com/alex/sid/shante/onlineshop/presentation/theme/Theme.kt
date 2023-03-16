@@ -1,4 +1,4 @@
-package com.alex.sid.shante.onlineshop.ui.theme
+package com.alex.sid.shante.onlineshop.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -13,7 +13,7 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
+    primary = Primary,
     primaryVariant = Purple700,
     secondary = Teal200
 
