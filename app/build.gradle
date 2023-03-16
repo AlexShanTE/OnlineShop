@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'kotlinx-serialization'
 }
 
 android {
@@ -89,4 +90,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
     //Coil
     implementation "io.coil-kt:coil-compose:2.2.2"
+    //Kotlin serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 }
