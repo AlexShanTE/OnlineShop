@@ -20,19 +20,31 @@ fun Navigation(
             ShopScreen()
         }
         composable(route = Screen.FavouriteScreen.route) {
-            EmptyScreen(text = "FavouriteScreen")
+            EmptyScreen(
+                navController = navHostController,
+                text = "FavouriteScreen"
+            )
         }
         composable(route = Screen.ShoppingCartScreen.route) {
-            EmptyScreen(text = "ShoppingCartScreen")
+            EmptyScreen(
+                navController = navHostController,
+                text = "ShoppingCartScreen"
+            )
         }
         composable(route = Screen.ShoppingCartScreen.route) {
-            EmptyScreen(text = "ShoppingCartScreen")
+            EmptyScreen(
+                navController = navHostController,
+                text = "ShoppingCartScreen"
+            )
         }
         composable(route = Screen.MessageScreen.route) {
-            EmptyScreen(text = "MessageScreen")
+            EmptyScreen(
+                navController = navHostController,
+                text = "MessageScreen"
+            )
         }
         composable(route = Screen.ProfileScreen.route) {
-            ProfileScreen()
+            ProfileScreen(navController = navHostController)
         }
     }
 }

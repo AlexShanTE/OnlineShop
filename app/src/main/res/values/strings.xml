@@ -30,5 +30,6 @@
     <string name="log_oup">Log out</string>
     <string name="upload_item">Upload Item</string>
     <string name="change_photo">Change photo</string>
+    <string name="profile">Profile</string>
 
 </resources>

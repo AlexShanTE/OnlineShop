@@ -25,6 +25,12 @@ val Typography = Typography(
         letterSpacing = 0.sp
 
     ),
+    h2 = TextStyle(
+        fontFamily = MontserratBold.toFontFamily(),
+        fontSize = 15.sp,
+        letterSpacing = 0.sp
+
+    ),
     button = TextStyle(
         fontFamily = MontserratBold.toFontFamily(),
         fontSize = 14.sp,
