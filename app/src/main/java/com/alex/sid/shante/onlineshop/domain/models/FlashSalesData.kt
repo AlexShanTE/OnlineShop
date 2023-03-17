@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class FlashSalesData(
     @SerializedName("flash_sale")
-    val flashSaleItem: List<FlashSaleItem>
+    val flashSales: List<FlashSaleItem>
 )
 
 @Serializable

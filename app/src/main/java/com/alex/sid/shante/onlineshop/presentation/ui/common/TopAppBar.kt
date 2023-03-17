@@ -1,11 +1,12 @@
 package com.alex.sid.shante.onlineshop.presentation.ui.common
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -26,7 +27,7 @@ fun TopAppBar(
     modifier: Modifier = Modifier,
     elevation: Dp = 0.dp,
     backgroundColor: Color = Color.Transparent,
-    leadingIconPainter:Painter? = null,
+    leadingIconPainter: Painter? = null,
     title: @Composable () -> Unit,
     actions: @Composable () -> Unit,
     onLeadingIconClick: () -> Unit,
@@ -37,7 +38,7 @@ fun TopAppBar(
         modifier = modifier.fillMaxWidth()
     ) {
         //TopAppBar Content
-        Box(Modifier.height(32.dp)) {
+        Box {
             //Navigation Icon
             Row(
                 modifier = Modifier.fillMaxSize(),
@@ -76,12 +77,20 @@ fun TopAppBar(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun TopAppBarPreview() {
     TopAppBar(
         leadingIconPainter = painterResource(id = R.drawable.ic_help),
         title = { Text(text = "Text") },
-        actions = { /*TODO*/ }) {
+        actions = {
+            Box(
+                Modifier
+                    .size(50.dp)
+                    .background(Color.Black)) {
+
+            }
+        }
+    ) {
     }
 }

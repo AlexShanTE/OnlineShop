@@ -39,6 +39,7 @@ fun CustomTextField(
     modifier: Modifier = Modifier,
     value: String,
     placeHolderText: String,
+    backgroundColor: Color = Color(0xFFE8E8E8),
     isValueVisible: Boolean = true,
     isError: Boolean = false,
     trailingIcon: @Composable() (() -> Unit)? = null,
@@ -63,7 +64,7 @@ fun CustomTextField(
                 .align(Alignment.Center)
                 .padding(horizontal = 44.dp)
                 .background(
-                    color = Color(0xFFE8E8E8),
+                    color = backgroundColor,
                     shape = RoundedCornerShape(15.dp)
                 ),
             singleLine = true,
@@ -104,7 +105,6 @@ fun CustomTextField(
                             ),
                             text = placeHolderText,
                             textAlign = TextAlign.Center,
-//                            color = if (isError) Error else HintColor
                         )
                     },
                     interactionSource = interactionSource,

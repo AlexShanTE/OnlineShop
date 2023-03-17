@@ -27,9 +27,25 @@
     <string name="trade_history">Trade history</string>
     <string name="restore_purchase">Restore Purchase</string>
     <string name="help">Help</string>
-    <string name="log_oup">Log out</string>
+    <string name="log_out">Log out</string>
     <string name="upload_item">Upload Item</string>
     <string name="change_photo">Change photo</string>
     <string name="profile">Profile</string>
+    <!--Shop Screen-->
+    <string name="view_all">View all</string>
+    <string name="latest">Latest</string>
+    <string name="flash_sale">Flash Sale</string>
+    <string name="phones">Phones</string>
+    <string name="headphones">Headphones</string>
+    <string name="games">Games</string>
+    <string name="cars">Cars</string>
+    <string name="furniture">Furniture</string>
+    <string name="kids">Kids</string>
+    <string name="what_are_you_looking_for">What are you looking for?</string>
+    <string name="search_icon">Search icon</string>
+    <string name="cancel_button">Cancel button</string>
+    <string name="profile_image">Profile image</string>
+    <string name="location">Location</string>
+    <string name="change_location">Change location button</string>
 
 </resources>

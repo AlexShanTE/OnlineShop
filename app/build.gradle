@@ -91,5 +91,8 @@ dependencies {
     //Coil
     implementation "io.coil-kt:coil-compose:2.2.2"
     //Kotlin serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+    //Pager
+    implementation "com.google.accompanist:accompanist-pager:0.29.2-rc"
+    implementation "com.google.accompanist:accompanist-pager-indicators:0.29.2-rc"
 }
