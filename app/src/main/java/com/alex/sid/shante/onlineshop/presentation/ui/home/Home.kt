@@ -7,43 +7,44 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavHostController
 import com.alex.sid.shante.onlineshop.R
-import com.alex.sid.shante.onlineshop.presentation.ui.home.bottomnavigation.BottomNavItem
-import com.alex.sid.shante.onlineshop.presentation.ui.home.bottomnavigation.BottomNavigationBar
-import com.alex.sid.shante.onlineshop.presentation.ui.home.bottomnavigation.Navigation
-import com.alex.sid.shante.onlineshop.presentation.ui.home.bottomnavigation.Screen
+import com.alex.sid.shante.onlineshop.presentation.ui.home.navigation.BottomNavItem
+import com.alex.sid.shante.onlineshop.presentation.ui.home.navigation.BottomNavigationBar
+import com.alex.sid.shante.onlineshop.presentation.ui.home.navigation.HomeScreen
+import com.alex.sid.shante.onlineshop.presentation.ui.home.navigation.HomeScreenNavigation
 
 @Composable
-fun Home() {
-    val navHostController = rememberNavController()
+fun Home(
+    navHostController: NavHostController
+) {
     Scaffold(
         bottomBar = {
             BottomNavigationBar(
                 items = listOf(
                     BottomNavItem(
                         name = "ShopScreen",
-                        route = Screen.ShopScreen.route,
+                        route = HomeScreen.ShopScreen.route,
                         icon = ImageVector.vectorResource(id = R.drawable.ic_home)
                     ),
                     BottomNavItem(
                         name = "FavouriteScreen",
-                        route = Screen.FavouriteScreen.route,
+                        route = HomeScreen.FavouriteScreen.route,
                         icon = ImageVector.vectorResource(id = R.drawable.ic_favourite)
                     ),
                     BottomNavItem(
                         name = "ShoppingCartScreen",
-                        route = Screen.ShoppingCartScreen.route,
+                        route = HomeScreen.ShoppingCartScreen.route,
                         icon = ImageVector.vectorResource(id = R.drawable.ic_shoping_cart)
                     ),
                     BottomNavItem(
                         name = "MessageScreen",
-                        route = Screen.MessageScreen.route,
+                        route = HomeScreen.MessageScreen.route,
                         icon = ImageVector.vectorResource(id = R.drawable.ic_message)
                     ),
                     BottomNavItem(
                         name = "ProfileScreen",
-                        route = Screen.ProfileScreen.route,
+                        route = HomeScreen.ProfileScreen.route,
                         icon = ImageVector.vectorResource(id = R.drawable.ic_profile)
                     )
                 ),
@@ -57,7 +58,7 @@ fun Home() {
         Box(
             modifier = Modifier.padding(innerPadding)
         ) {
-            Navigation(navHostController = navHostController)
+            HomeScreenNavigation(navHostController = navHostController)
         }
     }
 }

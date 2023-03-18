@@ -39,11 +39,13 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.alex.sid.shante.onlineshop.R
 import com.alex.sid.shante.onlineshop.presentation.theme.MontserratBold
 import com.alex.sid.shante.onlineshop.presentation.theme.Poppins
 import com.alex.sid.shante.onlineshop.presentation.ui.authorization.common.CustomTextField
 import com.alex.sid.shante.onlineshop.presentation.ui.common.TopAppBar
+import com.alex.sid.shante.onlineshop.presentation.ui.home.navigation.HomeScreen
 import com.alex.sid.shante.onlineshop.presentation.ui.home.shopscreen.components.FlashSaleItemCard
 import com.alex.sid.shante.onlineshop.presentation.ui.home.shopscreen.components.HorizontalItemPager
 import com.alex.sid.shante.onlineshop.presentation.ui.home.shopscreen.components.LatestItemCard
@@ -53,7 +55,9 @@ import com.alex.sid.shante.onlineshop.presentation.ui.home.shopscreen.components
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ShopScreen() {
+fun ShopScreen(
+    navController: NavController
+) {
 
     val viewModel: ShopScreenViewModel = hiltViewModel()
     val state by viewModel.state.collectAsState()
@@ -168,7 +172,8 @@ fun ShopScreen() {
                                 context,
                                 "On add ${latestItems[index].name} clicked"
                             )
-                        }
+                        },
+                        onCardCLick = {navController.navigate(route = HomeScreen.DetailsScreen.route)}
                     )
                 }
             }
@@ -205,7 +210,8 @@ fun ShopScreen() {
                                 context,
                                 "on add ${flashSaleItems[index].name} clicked"
                             )
-                        }
+                        },
+                        onCardClick = {navController.navigate(route = HomeScreen.DetailsScreen.route)}
                     )
                 }
             }

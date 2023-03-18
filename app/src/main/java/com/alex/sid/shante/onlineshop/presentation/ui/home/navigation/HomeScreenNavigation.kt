@@ -1,61 +1,62 @@
-package com.alex.sid.shante.onlineshop.presentation.ui.home.bottomnavigation
+package com.alex.sid.shante.onlineshop.presentation.ui.home.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.alex.sid.shante.onlineshop.presentation.ui.home.emptyscreen.EmptyScreen
 import com.alex.sid.shante.onlineshop.presentation.ui.home.profilescreen.ProfileScreen
-import com.alex.sid.shante.onlineshop.presentation.ui.home.shopscreen.ShopScreen
 
 @Composable
-fun Navigation(
+fun HomeScreenNavigation(
     navHostController: NavHostController
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = Screen.ShopScreen.route
+        startDestination = HomeScreen.ShopScreen.route
     ) {
-        composable(route = Screen.ShopScreen.route) {
-            ShopScreen()
+        composable(route = HomeScreen.ShopScreen.route) {
+            val navHost = rememberNavController()
+            ShopDetailsNavigation(navHostController = navHost)
         }
-        composable(route = Screen.FavouriteScreen.route) {
+        composable(route = HomeScreen.FavouriteScreen.route) {
             EmptyScreen(
                 navController = navHostController,
                 text = "FavouriteScreen"
             )
         }
-        composable(route = Screen.ShoppingCartScreen.route) {
+        composable(route = HomeScreen.ShoppingCartScreen.route) {
             EmptyScreen(
                 navController = navHostController,
                 text = "ShoppingCartScreen"
             )
         }
-        composable(route = Screen.ShoppingCartScreen.route) {
+        composable(route = HomeScreen.ShoppingCartScreen.route) {
             EmptyScreen(
                 navController = navHostController,
                 text = "ShoppingCartScreen"
             )
         }
-        composable(route = Screen.MessageScreen.route) {
+        composable(route = HomeScreen.MessageScreen.route) {
             EmptyScreen(
                 navController = navHostController,
                 text = "MessageScreen"
             )
         }
-        composable(route = Screen.ProfileScreen.route) {
+        composable(route = HomeScreen.ProfileScreen.route) {
             ProfileScreen(navController = navHostController)
         }
     }
 }
 
-sealed class Screen(val route: String) {
-    object ShopScreen : Screen("ShopScreen")
-    object FavouriteScreen : Screen("FavouriteScreen")
-    object ShoppingCartScreen : Screen("ShoppingCartScreen")
-    object MessageScreen : Screen("MessageScreen")
-    object ProfileScreen : Screen("ProfileScreen")
-
+sealed class HomeScreen(val route: String) {
+    object ShopScreen : HomeScreen("ShopScreen")
+    object DetailsScreen : HomeScreen("DetailsScreen")
+    object FavouriteScreen : HomeScreen("FavouriteScreen")
+    object ShoppingCartScreen : HomeScreen("ShoppingCartScreen")
+    object MessageScreen : HomeScreen("MessageScreen")
+    object ProfileScreen : HomeScreen("ProfileScreen")
     fun withArgs(vararg args: String): String {
         return buildString {
             append(route)

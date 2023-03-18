@@ -1,4 +1,4 @@
-package com.alex.sid.shante.onlineshop.presentation.ui.home.bottomnavigation
+package com.alex.sid.shante.onlineshop.presentation.ui.home.navigation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,11 +37,12 @@ fun BottomNavigationBar(
     val currentDestination = backStackEntry?.destination
 
     val screensWithBottomBar = listOf(
-        Screen.ShopScreen,
-        Screen.FavouriteScreen,
-        Screen.ShoppingCartScreen,
-        Screen.MessageScreen,
-        Screen.ProfileScreen
+        HomeScreen.ShopScreen,
+        HomeScreen.DetailsScreen,
+        HomeScreen.FavouriteScreen,
+        HomeScreen.ShoppingCartScreen,
+        HomeScreen.MessageScreen,
+        HomeScreen.ProfileScreen
     )
 
     val bottomBarDestination = screensWithBottomBar.any { it.route == currentDestination?.route }

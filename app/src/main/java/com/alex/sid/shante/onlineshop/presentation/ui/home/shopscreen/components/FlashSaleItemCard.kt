@@ -2,6 +2,7 @@ package com.alex.sid.shante.onlineshop.presentation.ui.home.shopscreen.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -50,12 +51,14 @@ fun FlashSaleItemCard(
     name: String,
     price: Double,
     onFavouriteClick: () -> Unit,
-    onAddClick: () -> Unit
+    onAddClick: () -> Unit,
+    onCardClick: () -> Unit
 ) {
     Card(
         modifier = modifier
             .height(221.dp)
-            .width(174.dp),
+            .width(174.dp)
+            .clickable { onCardClick() },
         shape = RoundedCornerShape(11.dp)
     ) {
         //image
@@ -212,6 +215,7 @@ fun FlashSaleItemPreview() {
         name = "New balance sneakers",
         price = 33.00,
         onFavouriteClick = { },
-        onAddClick = {}
+        onAddClick = {},
+        onCardClick = {}
     )
 }

@@ -1,6 +1,7 @@
 package com.alex.sid.shante.onlineshop.presentation.ui.home.shopscreen.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,12 +43,16 @@ fun LatestItemCard(
     name: String,
     price: Int,
     imageUrl: String,
-    onAddClick: () -> Unit
+    onAddClick: () -> Unit,
+    onCardCLick: () -> Unit
 ) {
     Card(
         modifier = modifier
             .height(150.dp)
-            .width(114.dp),
+            .width(114.dp)
+            .clickable {
+                onCardCLick()
+            },
         shape = RoundedCornerShape(9.dp)
     ) {
         //image
@@ -146,7 +151,7 @@ fun LatestItemPreview() {
         name = "Samsung S10",
         price = 1000,
         imageUrl = "",
-        onAddClick = {}
-
+        onAddClick = {},
+        onCardCLick = {}
     )
 }

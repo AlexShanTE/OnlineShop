@@ -10,7 +10,6 @@ class OnlineShopApp:Application() {
     companion object {
         lateinit var appContext: WeakReference<Context>
     }
-
     override fun onCreate() {
         super.onCreate()
         appContext = WeakReference(applicationContext)

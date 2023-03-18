@@ -10,11 +10,13 @@ import com.alex.sid.shante.onlineshop.domain.repositories.LoginRepository
 import com.alex.sid.shante.onlineshop.presentation.ui.authorization.utils.FieldValidator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -72,12 +74,27 @@ class LoginViewModel @Inject constructor(
             try {
                 val user = repository.getUser(login = login)
                 if (user?.password == password) {
-                    _state.update { state -> state.copy(user = user) }
-                }
-
+                    _state.update { state -> state.copy(currentUser = user) }
+                } else
+                    withContext(Dispatchers.Main) {
+                        makeToast(context, context.getString(R.string.user_not_found))
+                    }
             } catch (exception: Throwable) {
                 makeToast(context, context.getString(R.string.user_not_found))
             }
+        }
+    }
+
+    fun resetState() {
+        _state.update { state ->
+            state.copy(
+                login = "",
+                password = "",
+                currentUser = null,
+                isPasswordShowed = false,
+                isLoginValid = true,
+                isPasswordValid = true,
+            )
         }
     }
 }

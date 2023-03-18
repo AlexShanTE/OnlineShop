@@ -30,25 +30,19 @@ import com.alex.sid.shante.onlineshop.presentation.ui.authorization.common.Custo
 @Composable
 fun LoginScreen(
     navController: NavController,
-    userLogin: String?
 ) {
+    val viewModel: LoginViewModel = hiltViewModel()
+    val state by viewModel.state.collectAsState()
+    val context = LocalContext.current
 
-
-    println("USER LOGIN OUTSIDE $userLogin")
-
-    if (userLogin!== null) {
-        println("USER LOGIN IS $userLogin")
-        // todo navigate page1
+    if (state.currentUser != null) {
+        navController.navigate(route = "Home")
+        viewModel.resetState()
     }
 
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-
-        val viewModel: LoginViewModel = hiltViewModel()
-        val state by viewModel.state.collectAsState()
-        val context = LocalContext.current
-
         Spacer(modifier = Modifier.height(120.dp))
         Text(
             modifier = Modifier.fillMaxWidth(),
@@ -102,12 +96,13 @@ fun LoginScreen(
                 .height(46.dp)
                 .padding(horizontal = 44.dp),
             onClick = {
-                if (viewModel.isValidFields(context))
+                if (viewModel.isValidFields(context)) {
                     viewModel.login(
                         context,
                         login = state.login,
                         password = state.password
                     )
+                }
             },
             shape = RoundedCornerShape(15.dp)
         ) {
@@ -120,8 +115,5 @@ fun LoginScreen(
 @Composable
 fun SignInScreenPreview() {
     val context = LocalContext.current
-    LoginScreen(
-        navController = NavController(context),
-        userLogin = null
-    )
+    LoginScreen(navController = NavController(context))
 }

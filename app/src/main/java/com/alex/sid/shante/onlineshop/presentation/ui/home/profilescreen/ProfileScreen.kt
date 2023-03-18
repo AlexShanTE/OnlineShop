@@ -78,14 +78,14 @@ fun ProfileScreen(
         ) {
             Image(
                 modifier = Modifier.size(60.dp),
-                bitmap = ImageBitmap.imageResource(R.drawable.avatar_dude) ,
+                bitmap = ImageBitmap.imageResource(R.drawable.avatar_dude),
                 contentDescription = "Avatar"
             )
             Spacer(modifier = Modifier.height(6.dp))
             Text(
                 modifier = Modifier.clickable {
                     //todo upload photo
-                    viewModel.makeToast(context,"On change photo clicked")
+                    viewModel.makeToast(context, "On change photo clicked")
                 },
                 text = stringResource(R.string.change_photo),
                 fontFamily = Montserrat.toFontFamily(),
@@ -108,7 +108,7 @@ fun ProfileScreen(
                     .width(290.dp),
                 shape = RoundedCornerShape(15.dp),
                 onClick = {
-                    viewModel.makeToast(context,"On Upload item clicked")
+                    viewModel.makeToast(context, "On Upload item clicked")
                 }
             ) {
                 Box(
@@ -181,12 +181,7 @@ fun ProfileScreen(
                 painter = painterResource(id = R.drawable.ic_logout),
                 text = stringResource(R.string.log_out),
                 isArrowShowed = false,
-                onButtonClick = {
-                    viewModel.makeToast(
-                        context,
-                        "On logout purchase button clicked"
-                    )
-                },
+                onButtonClick = { navController.navigate("SignUp") },
                 onArrowClick = {}
             )
         }
