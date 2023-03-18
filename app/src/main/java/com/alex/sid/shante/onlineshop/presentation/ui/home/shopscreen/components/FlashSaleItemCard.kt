@@ -62,7 +62,6 @@ fun FlashSaleItemCard(
         AsyncImage(
             modifier = modifier.fillMaxSize(),
             model = imageUrl,
-//            contentScale = ContentScale.Crop,
             contentDescription = category + name
         )
         Box(
@@ -79,7 +78,8 @@ fun FlashSaleItemCard(
                 Image(
                     modifier = Modifier.size(25.dp),
                     bitmap = ImageBitmap.imageResource(R.drawable.dude_png),
-                    contentDescription = "Dude")
+                    contentDescription = "Dude"
+                )
                 //discount
                 Text(
                     modifier = Modifier

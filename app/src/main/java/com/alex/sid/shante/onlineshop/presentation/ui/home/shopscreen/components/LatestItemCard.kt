@@ -54,7 +54,6 @@ fun LatestItemCard(
         AsyncImage(
             modifier = modifier.fillMaxSize(),
             model = imageUrl,
-//            contentScale = ContentScale.Crop,
             contentDescription = category + name
         )
         Column(
