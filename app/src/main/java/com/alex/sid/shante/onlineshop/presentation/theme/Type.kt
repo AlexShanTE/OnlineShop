@@ -16,35 +16,35 @@ val Poppins = Font(R.font.poppins, FontWeight.Normal)
 val Typography = Typography(
     body1 = TextStyle(
         fontFamily = Montserrat.toFontFamily(),
-        fontSize = 11.sp
+        fontSize = 11.sp,
+        letterSpacing = 0.sp
     ),
     h4 = TextStyle(
         fontFamily = MontserratBold.toFontFamily(),
-        fontSize = 26.sp
+        fontSize = 26.sp,
+        letterSpacing = 0.sp
+
+    ),
+    h2 = TextStyle(
+        fontFamily = MontserratBold.toFontFamily(),
+        fontSize = 15.sp,
+        letterSpacing = 0.sp
+
     ),
     button = TextStyle(
         fontFamily = MontserratBold.toFontFamily(),
-        fontSize = 14.sp
+        fontSize = 14.sp,
+        letterSpacing = 0.sp
     ),
     subtitle1 = TextStyle(
         fontFamily = Montserrat.toFontFamily(),
-        fontSize = 12.sp
+        fontSize = 12.sp,
+        letterSpacing = 0.sp
     ),
     subtitle2 = TextStyle(
         fontFamily = Montserrat.toFontFamily(),
-        fontSize = 10.sp
-    ),
+        fontSize = 10.sp,
+        letterSpacing = 0.sp
 
-    /* Other default text styles to override
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
-    ),
-    caption = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
     )
-    */
 )

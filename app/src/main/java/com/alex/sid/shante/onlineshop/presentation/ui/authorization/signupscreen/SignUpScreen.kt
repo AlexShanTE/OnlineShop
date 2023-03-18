@@ -30,9 +30,9 @@ import androidx.navigation.NavController
 import com.alex.sid.shante.onlineshop.R
 import com.alex.sid.shante.onlineshop.domain.models.User
 import com.alex.sid.shante.onlineshop.presentation.theme.LogInColor
-import com.alex.sid.shante.onlineshop.presentation.ui.authorization.Screen
 import com.alex.sid.shante.onlineshop.presentation.ui.authorization.common.CustomTextField
 import com.alex.sid.shante.onlineshop.presentation.ui.authorization.signupscreen.components.CustomButtonWithIcon
+import com.alex.sid.shante.onlineshop.presentation.ui.navigation.AuthorizationScreen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -121,9 +121,8 @@ fun SignUpScreen(
                                 email = state.email
                             )
                         )
-                        if (user !== null) {
-                            navController.navigate(route = Screen.LoginScreen.withArgs(user.login))
-                        }
+                        if (user != null)
+                            navController.navigate(route = AuthorizationScreen.LoginScreen.route)
                     }
                 }
             },
@@ -140,7 +139,10 @@ fun SignUpScreen(
                 modifier = Modifier
                     .padding(start = 2.dp)
                     .clickable {
-                        navController.navigate(route = Screen.LoginScreen.route)
+                        navController
+                            .navigate(
+                                route = AuthorizationScreen.LoginScreen.route
+                            )
                     },
                 text = stringResource(R.string.log_in),
                 color = LogInColor
